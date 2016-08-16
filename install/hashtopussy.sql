@@ -23,23 +23,6 @@ CREATE TABLE IF NOT EXISTS `agents` (
   KEY `assignment_verify` (`token`,`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_bin COMMENT='List of Hashtopus agents' AUTO_INCREMENT=10 ;
 
-CREATE TABLE `Supertask` (
-  `supertaskId` int(11) NOT NULL,
-  `name` varchar(100) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-ALTER TABLE `Supertask`
-  ADD PRIMARY KEY (`supertaskId`);
-
-CREATE TABLE `SupertaskTask` (
-  `supertaskTaskId` int(11) NOT NULL,
-  `supertaskId` int(11) NOT NULL,
-  `taskId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-ALTER TABLE `SupertaskTask`
-  ADD PRIMARY KEY (`supertaskTaskId`);
-
 CREATE TABLE IF NOT EXISTS `assignments` (
   `task` int(11) NOT NULL COMMENT 'Task ID',
   `agent` int(11) NOT NULL COMMENT 'Agent ID',
@@ -161,24 +144,18 @@ CREATE TABLE IF NOT EXISTS `hashlists` (
   PRIMARY KEY (`id`,`format`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_bin COMMENT='List of hashlists' AUTO_INCREMENT=28 ;
 
-CREATE TABLE `Supertask` (
-  `supertaskId` int(11) NOT NULL,
-  `name` varchar(100) COLLATE utf8_bin NOT NULL
+CREATE TABLE IF NOT EXISTS `Supertask` (
+  `supertaskId` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`supertaskId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-ALTER TABLE `Supertask`
-  ADD PRIMARY KEY (`supertaskId`);
-ALTER TABLE `Supertask`
-  MODIFY `supertaskId` int(11) NOT NULL AUTO_INCREMENT;
   
-CREATE TABLE `SupertaskTask` (
-  `supertaskTaskId` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `SupertaskTask` (
+  `supertaskTaskId` int(11) NOT NULL AUTO_INCREMENT,
   `supertaskId` int(11) NOT NULL,
-  `taskId` int(11) NOT NULL
+  `taskId` int(11) NOT NULL,
+  PRIMARY KEY (`supertaskTaskId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-ALTER TABLE `SupertaskTask`
-  ADD PRIMARY KEY (`supertaskTaskId`);
-ALTER TABLE `SupertaskTask`
-  MODIFY `supertaskTaskId` int(11) NOT NULL AUTO_INCREMENT;
 
 CREATE TABLE IF NOT EXISTS `hashlistusers` (
   `hashlist` int(11) NOT NULL COMMENT 'Used hashlist',
