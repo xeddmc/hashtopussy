@@ -1004,7 +1004,7 @@ class API {
     /*
      * Calculate the relative progress inside of the chunk
      */
-    $chunkCombinationStart = floor($combinationTotal / ($skip + $length) * $skip);
+    $chunkCombinationStart = 0;
     $currentRelativeProgress = round(($combinationProgress - $chunkCombinationStart) / ($combinationTotal - $chunkCombinationStart) * 10000);
     $keyspaceProgress -= $skip;
     
